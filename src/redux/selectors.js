@@ -4,6 +4,8 @@ export const selectFilter = state => state.filter;
 
 export const selectError = state => state.contact.error;
 
+export const selectIsLoggedIn = state => state.login.isLoggedIn;
+
 export const selectFilteredList = state => {
   const filterValue = selectFilter(state);
   const contactList = selectContacts(state);

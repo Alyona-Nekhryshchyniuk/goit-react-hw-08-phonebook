@@ -11,16 +11,19 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <label>
-      Find contacts by name <br />
-      <Input
-        onChange={e => {
-          dispatch(setFilterValue(e.target.value));
-        }}
-        // All state goes to useSelector(), not only filter!
-        value={useSelector(selectFilter)}
-      />
-    </label>
+    <>
+      <h1>Contacts</h1>
+      <label>
+        Find contacts by name <br />
+        <Input
+          onChange={e => {
+            dispatch(setFilterValue(e.target.value));
+          }}
+          // All state goes to useSelector(), not only filter!
+          value={useSelector(selectFilter)}
+        />
+      </label>
+    </>
   );
 };
 

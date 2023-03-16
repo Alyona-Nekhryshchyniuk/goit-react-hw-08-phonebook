@@ -1,33 +1,35 @@
-import ContactForm from './ContactForm';
-import Filter from './Filter';
-import ContactList from './ContactList';
+// import ContactForm from './ContactForm';
+// import Filter from './Filter';
+// import ContactList from './ContactList';
+// import { selectError } from 'redux/selectors';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchContacts } from '../redux/operations';
-import { selectError } from 'redux/selectors';
+import { Route, Routes } from 'react-router-dom';
+import { Contacts } from './Contacts/Contacts';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { PrivateRoute } from './PrivateRoute';
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-  const error = useSelector(selectError);
 
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h1>Contacts</h1>
-      <Filter />
-      {error && (
-        <div style={{ color: 'red' }}>
-          <p>Oooops ...</p>
-          <p>{error}</p>
-        </div>
-      )}
-      <ContactList />
-    </>
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route
+          path="/contacts"
+          element={<PrivateRoute navPath="/register" element={<Contacts />} />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Route>
+    </Routes>
   );
 };
-
+// navPath = '/register';
 export default App;
