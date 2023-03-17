@@ -1,30 +1,33 @@
 import axios from 'axios';
 
-// axios.defaults.baseURL = 'https://63da6ba5b28a3148f686d43d.mockapi.io';
-const contact = axios.create({
-  baseURL: 'https://63da6ba5b28a3148f686d43d.mockapi.io',
-});
-
-const user = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/users',
+export const connectionsAPIAxios = axios.create({
+  baseURL: 'https://connections-api.herokuapp.com',
 });
 
 export const postContact = data => {
-  return contact.post('/contacts', data);
+  return connectionsAPIAxios.post('/contacts', data);
 };
 
 export const fetchAll = () => {
-  return contact.get('/contacts');
+  return connectionsAPIAxios.get('/contacts');
 };
 
 export const deleteContact = contactId => {
-  return contact.delete(`/contacts/${contactId}`);
+  return connectionsAPIAxios.delete(`/contacts/${contactId}`);
 };
 
 export const registerUser = credentials => {
-  return user.post('/signup', credentials);
+  return connectionsAPIAxios.post('/users/signup', credentials);
 };
 
 export const loginUser = credentials => {
-  return user.post('/login', credentials);
+  return connectionsAPIAxios.post('/users/login', credentials);
 };
+
+export const logoutUser = () => {
+  return connectionsAPIAxios.post('/users/logout');
+};
+
+// export const getCurrentUser = () => {
+//   return connectionsAPIAxios.get('/users/current');
+// };

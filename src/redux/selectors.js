@@ -6,6 +6,12 @@ export const selectError = state => state.contact.error;
 
 export const selectIsLoggedIn = state => state.login.isLoggedIn;
 
+export const selectEmail = state => state.login.email;
+
+export const selectToken = state => state.login.token;
+
+export const selectErrorMessage = state => state.login.errorMessage;
+
 export const selectFilteredList = state => {
   const filterValue = selectFilter(state);
   const contactList = selectContacts(state);

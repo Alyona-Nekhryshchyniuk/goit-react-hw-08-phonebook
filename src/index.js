@@ -4,16 +4,20 @@ import App from 'components/App';
 import './index.css';
 import { Wrapper } from './components/Wrapper.styled';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
+
 import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Provider store={store}>
     <Wrapper>
-      <BrowserRouter basename="/goit-react-hw-08-phonebook">
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/goit-react-hw-08-phonebook">
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Wrapper>
   </Provider>
   // </React.StrictMode>

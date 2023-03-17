@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as API from '../axiosRequests';
+import { token } from '../token';
 
 // Fetch all
 export const fetchContacts = createAsyncThunk(
@@ -48,6 +49,8 @@ export const registerUser = createAsyncThunk(
       // console.log(credentials);
       const response = await API.registerUser(credentials);
       // console.log(response.data);
+
+      token.set(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -63,9 +66,48 @@ export const loginUser = createAsyncThunk(
       // console.log(credentials);
       const response = await API.loginUser(credentials);
       console.log(response.data);
+      token.set(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
+export const logoutUser = createAsyncThunk(
+  'login/logoutUser',
+  async (_, thunkAPI) => {
+    try {
+      const response = await API.logoutUser();
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const getCurrentUser = createAsyncThunk(
+//   'login/getCurrentUser',
+//   async (_, thunkAPI) => {
+//     try {
+//       // const state = thunkAPI.getState();
+//       // console.log(state);
+//       // const token = state.login.token;
+//       // console.log(token);
+//       // token.set(token);
+//       const response = await API.getCurrentUser();
+//       return response.data;
+//     } catch (error) {
+//       thunkAPI.rejectWithValue(error.message);
+//     }
+//   },
+//   {
+//     condition: (userId, thunkAPI) => {
+//       // const { users } = thunkAPI.getState();
+//       // const { fetchStatus } = users[userId];
+//       // if (fetchStatus === 'loading') {
+//       //   return false;
+//       // }
+//     },
+//   }
+// );
