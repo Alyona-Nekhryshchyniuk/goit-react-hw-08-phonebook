@@ -1,20 +1,22 @@
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { Header } from '../../components';
+
 export const NotAuthUserMenu = () => {
   return (
     <>
-      <header>
+      <Header>
         <nav>
           <ul>
-            <NavLink to="register" className="navItem">
+            <NavLink to="register" className="NavLink">
               Register
             </NavLink>
-            <NavLink to="/" className="navItem">
+            <NavLink to="/" className="NavLink">
               Login
             </NavLink>
           </ul>
         </nav>
-      </header>
+      </Header>
       <main>
         <Outlet />
       </main>

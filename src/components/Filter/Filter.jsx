@@ -1,6 +1,6 @@
 import {
   default as PropTypes,
-  Input,
+  UserInput,
   useDispatch,
   useSelector,
   setFilterValue,
@@ -15,7 +15,7 @@ const Filter = () => {
       <h1>Contacts</h1>
       <label>
         Find contacts by name <br />
-        <Input
+        <UserInput
           onChange={e => {
             dispatch(setFilterValue(e.target.value));
           }}

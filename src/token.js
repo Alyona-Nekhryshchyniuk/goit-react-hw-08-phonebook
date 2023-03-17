@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { connectionsAPIAxios } from './axiosRequests';
 export const token = {
   set(token) {

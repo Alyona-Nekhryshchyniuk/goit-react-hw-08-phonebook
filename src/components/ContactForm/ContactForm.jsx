@@ -1,14 +1,12 @@
 import {
   default as PropTypes,
-  Form,
   Button,
-  Input,
-  Label,
   BsFillTelephonePlusFill,
   useState,
   useDispatch,
   useSelector,
 } from '../../components';
+import { Form, UserInput } from '../../components';
 import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
 
@@ -37,9 +35,9 @@ const ContactForm = () => {
           setNumber('');
         }}
       >
-        <Label>
-          Name:{' '}
-          <Input
+        <label>
+          name:{' '}
+          <UserInput
             type="text"
             name="name"
             value={name}
@@ -48,10 +46,10 @@ const ContactForm = () => {
             required
             onChange={inputChange}
           />
-        </Label>
-        <Label>
-          Number:{' '}
-          <Input
+        </label>
+        <label>
+          number:{' '}
+          <UserInput
             type="tel"
             name="number"
             value={number}
@@ -60,9 +58,8 @@ const ContactForm = () => {
             required
             onChange={inputChange}
           />
-        </Label>
+        </label>
         <Button type="submit">
-          {' '}
           <BsFillTelephonePlusFill /> Add contacts
         </Button>
       </Form>

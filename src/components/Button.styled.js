@@ -4,7 +4,6 @@ export const Button = styled.button`
   align-items: center;
   align-self: center;
   height: 36px;
-  margin-bottom: 5px;
   color: #ececec;
   border: 1px solid #ececec;
   background-color: #385170;

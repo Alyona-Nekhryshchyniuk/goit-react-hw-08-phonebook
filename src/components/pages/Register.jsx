@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../redux/operations';
 import { useState } from 'react';
+import { Form, UserInput } from '../Form.styled';
+import { Button } from '../../components';
 export const Register = () => {
   const [credentials, setCredentials] = useState({});
   const dispatch = useDispatch();
@@ -22,23 +24,24 @@ export const Register = () => {
   return (
     <>
       <h2>Registration</h2>
-      <form onSubmit={onRegisterSubmit}>
+      <Form onSubmit={onRegisterSubmit}>
         <label>
-          Name<input type="text" name="name" onChange={onInputChange}></input>
+          name:
+          <UserInput type="text" name="name" onChange={onInputChange} />
         </label>
+
         <label>
-          Email<input type="text" name="email" onChange={onInputChange}></input>
+          email:
+          <UserInput type="text" name="email" onChange={onInputChange} />
         </label>
+
         <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            onChange={onInputChange}
-          ></input>
+          password:
+          <UserInput type="password" name="password" onChange={onInputChange} />
         </label>
-        <button type="submit">Register</button>
-      </form>
+
+        <Button type="submit">Register</Button>
+      </Form>
     </>
   );
 };
