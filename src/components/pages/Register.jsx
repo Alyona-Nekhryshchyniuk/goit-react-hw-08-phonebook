@@ -45,7 +45,9 @@ export const Register = () => {
           />
         </label>
 
-        <Button type="submit">Register</Button>
+        <Button type="submit" style={{ color: '#ffee7d' }}>
+          Register
+        </Button>
       </Form>
     </>
   );

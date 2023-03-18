@@ -8,6 +8,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await API.fetchAll();
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,10 +47,7 @@ export const registerUser = createAsyncThunk(
   'register/registerUser',
   async (credentials, thunkAPI) => {
     try {
-      // console.log(credentials);
       const response = await API.registerUser(credentials);
-      // console.log(response.data);
-
       token.set(response.data.token);
       return response.data;
     } catch (error) {
@@ -65,7 +63,7 @@ export const loginUser = createAsyncThunk(
     try {
       // console.log(credentials);
       const response = await API.loginUser(credentials);
-      console.log(response.data);
+
       token.set(response.data.token);
       return response.data;
     } catch (error) {
@@ -97,6 +95,7 @@ export const getCurrentUser = createAsyncThunk(
       console.log('dfdfffff');
       const { token } = thunkAPI.getState().login;
       console.log(token);
+      if (!token) return thunkAPI.rejectWithValue();
       token.set(token);
       const response = await API.getCurrentUser();
       console.log(response.data);
@@ -104,15 +103,15 @@ export const getCurrentUser = createAsyncThunk(
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
     }
-  },
-  {
-    condition: (_, thunkAPI) => {
-      const { token } = thunkAPI.getState().login;
-
-      // const { fetchStatus } = users[userId];
-      if (!token) {
-        return false;
-      }
-    },
   }
+  // {
+  //   condition: (_, { getState, extra }) => {
+  //     const { token } = getState().login;
+
+  //     // const { fetchStatus } = users[userId];
+  //     if (!token) {
+  //       return false;
+  //     }
+  //   },
+  // }
 );

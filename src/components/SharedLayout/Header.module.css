@@ -1,8 +1,16 @@
 .NavLink {
+  color: #afb3b8;
+  /* text-shadow: 1px 1px 2px #385170; */
   text-decoration: none;
-  color: #142d4c;
+  /* color: #142d4c; */
   font-weight: 700;
-  font-size: 22px;
+  font-size: 21px;
+}
+
+.NavLink:global(.active) {
+  color: #22436b;
+  text-shadow: 2px 2px 3px #ffee7d;
+  font-size: 23px;
 }
 
 .NavLink:not(:last-child) {

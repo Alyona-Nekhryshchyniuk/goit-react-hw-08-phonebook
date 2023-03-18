@@ -39,6 +39,7 @@ const loginSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         console.log(action.payload);
+        console.log(action);
         state.isLoggedIn = true;
       });
   },
