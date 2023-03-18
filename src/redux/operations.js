@@ -79,6 +79,7 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await API.logoutUser();
+      token.unset();
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
@@ -86,28 +87,32 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-// export const getCurrentUser = createAsyncThunk(
-//   'login/getCurrentUser',
-//   async (_, thunkAPI) => {
-//     try {
-//       // const state = thunkAPI.getState();
-//       // console.log(state);
-//       // const token = state.login.token;
-//       // console.log(token);
-//       // token.set(token);
-//       const response = await API.getCurrentUser();
-//       return response.data;
-//     } catch (error) {
-//       thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-//   {
-//     condition: (userId, thunkAPI) => {
-//       // const { users } = thunkAPI.getState();
-//       // const { fetchStatus } = users[userId];
-//       // if (fetchStatus === 'loading') {
-//       //   return false;
-//       // }
-//     },
-//   }
-// );
+export const getCurrentUser = createAsyncThunk(
+  'login/getCurrentUser',
+  async (_, thunkAPI) => {
+    try {
+      // const state = thunkAPI.getState();
+      // console.log(state);
+      // const token = state.login.token;
+      console.log('dfdfffff');
+      const { token } = thunkAPI.getState().login;
+      console.log(token);
+      token.set(token);
+      const response = await API.getCurrentUser();
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const { token } = thunkAPI.getState().login;
+
+      // const { fetchStatus } = users[userId];
+      if (!token) {
+        return false;
+      }
+    },
+  }
+);

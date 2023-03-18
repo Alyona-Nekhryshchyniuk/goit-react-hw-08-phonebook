@@ -8,8 +8,14 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { selectErrorMessage } from 'redux/selectors';
 import { useSelector } from 'react-redux';
+import { useEffect, useDispatch } from '../components';
+import { getCurrentUser } from '../redux/operations';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
   return (
     <>
       <Routes>
@@ -22,12 +28,14 @@ const App = () => {
             />
           }
         >
-          <Route index element={<Login />} />{' '}
+          {/* <Route index element={<PrivateRoute navPath="/Contacts" />} /> */}
+          <Route index element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route
+          <Route path="/contacts" element={<Contacts />} />
+          {/* <Route
             path="/contacts"
             element={<PrivateRoute navPath="/" element={<Contacts />} />}
-          />
+          /> */}
         </Route>
       </Routes>
     </>

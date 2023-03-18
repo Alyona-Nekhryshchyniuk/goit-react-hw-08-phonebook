@@ -26,18 +26,23 @@ export const Register = () => {
       <h2>Registration</h2>
       <Form onSubmit={onRegisterSubmit}>
         <label>
-          name:
+          Name
           <UserInput type="text" name="name" onChange={onInputChange} />
         </label>
 
         <label>
-          email:
+          Email
           <UserInput type="text" name="email" onChange={onInputChange} />
         </label>
 
         <label>
-          password:
-          <UserInput type="password" name="password" onChange={onInputChange} />
+          Password
+          <UserInput
+            type="password"
+            name="password"
+            placeholder="At least 7 characters"
+            onChange={onInputChange}
+          />
         </label>
 
         <Button type="submit">Register</Button>

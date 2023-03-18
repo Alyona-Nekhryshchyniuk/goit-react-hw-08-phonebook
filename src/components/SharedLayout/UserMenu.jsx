@@ -5,6 +5,7 @@ import { logoutUser } from '../../redux/operations';
 import { Navigate } from 'react-router-dom';
 import { selectEmail } from '../../redux/selectors';
 import { Button, ImExit, Header, NavUserDetails } from '../../components';
+import css from './Header.module.css';
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ export const UserMenu = () => {
   return (
     <>
       <Header>
-        <NavLink to="contacts">Contacts</NavLink>
+        <NavLink to="contacts" className={css.NavLink}>
+          Contacts
+        </NavLink>
         <NavUserDetails>
           <div>
             <svg

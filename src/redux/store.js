@@ -1,5 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '../redux/reducer';
+import { loginReducer } from './loginSlice';
+import { contactReducer } from './contactSlice';
+import { filterReducer } from './filterSlice';
+import { registerReducer } from './registerSlice';
 
 import storage from 'redux-persist/lib/storage';
 import {
@@ -16,22 +19,18 @@ import {
 const persistConfig = {
   key: 'token',
   storage,
-  whitelist: ['login'],
+  whitelist: ['token'],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// export const store = configureStore({
-//   reducer: {
-//     contact: contactReducer,
-//     filter: filterReducer,
-//     register: registerReducer,
-//     login: loginReducer,
-//   },
-// });
+const persistedReducer = persistReducer(persistConfig, loginReducer);
 
 export let store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    contact: contactReducer,
+    filter: filterReducer,
+    register: registerReducer,
+    login: persistedReducer,
+  },
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -41,3 +40,34 @@ export let store = configureStore({
     }),
 });
 export let persistor = persistStore(store);
+
+// old version
+
+// const persistConfig = {
+//   key: 'token',
+//   storage,
+//   whitelist: ['login'],
+// };
+
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// // export const store = configureStore({
+// //   reducer: {
+// //     contact: contactReducer,
+// //     filter: filterReducer,
+// //     register: registerReducer,
+// //     login: loginReducer,
+// //   },
+// // });
+
+// export let store = configureStore({
+//   reducer: persistedReducer,
+
+//   middleware: getDefaultMiddleware =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// });
+// export let persistor = persistStore(store);

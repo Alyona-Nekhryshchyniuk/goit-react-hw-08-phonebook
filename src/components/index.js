@@ -9,7 +9,12 @@ export { ImExit } from 'react-icons/im';
 export { Form, UserInput } from './Form.styled';
 export { Button } from './Button.styled';
 export { List, ListItem } from './ContactList/List.styled';
-export { Header, NavUserDetails } from './SharedLayout/Header.styled';
+export {
+  Header,
+  NavUserDetails,
+  //   NavMenu,
+  //   NavMenuItem,
+} from './SharedLayout/Header.styled';
 
 export { setFilterValue } from '../redux/filterSlice';
 // export { deleteContact, addContact } from '../redux/contactSlice';

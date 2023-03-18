@@ -1,17 +1,18 @@
 import { Outlet } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { Header } from '../../components';
+import css from './Header.module.css';
 
 export const NotAuthUserMenu = () => {
   return (
     <>
       <Header>
-        <nav>
-          <ul>
-            <NavLink to="register" className="NavLink">
+        <nav className={css.navMenu}>
+          <ul className={css.navList}>
+            <NavLink to="register" className={css.NavLink}>
               Register
             </NavLink>
-            <NavLink to="/" className="NavLink">
+            <NavLink to="/" className={css.NavLink}>
               Login
             </NavLink>
           </ul>

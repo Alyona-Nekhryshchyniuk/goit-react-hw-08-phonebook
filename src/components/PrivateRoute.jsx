@@ -4,8 +4,8 @@ import { Navigate } from 'react-router-dom';
 
 import { selectIsLoggedIn } from '../redux/selectors';
 
-export const PrivateRoute = ({ navPath, element }) => {
+export const PrivateRoute = ({ navPath }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  return isLoggedIn ? element : <Navigate to={navPath} />;
+  return isLoggedIn && <Navigate to={navPath} />;
 };

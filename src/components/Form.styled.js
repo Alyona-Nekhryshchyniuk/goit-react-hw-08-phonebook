@@ -21,8 +21,9 @@ export const Form = styled.form`
 `;
 
 export const UserInput = styled.input`
-  width: 250px;
+  width: 240px;
   height: 22px;
   margin-left: 18px;
   margin-bottom: 18px;
+  padding-left: 10px;
 `;

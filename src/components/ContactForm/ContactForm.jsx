@@ -36,7 +36,7 @@ const ContactForm = () => {
         }}
       >
         <label>
-          name:{' '}
+          Name{' '}
           <UserInput
             type="text"
             name="name"
@@ -48,7 +48,7 @@ const ContactForm = () => {
           />
         </label>
         <label>
-          number:{' '}
+          Number{' '}
           <UserInput
             type="tel"
             name="number"

@@ -1,0 +1,22 @@
+.NavLink {
+  text-decoration: none;
+  color: #142d4c;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.NavLink:not(:last-child) {
+  margin-right: 15px;
+}
+.navMenu {
+  width: auto;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  padding: 0;
+  text-align: end;
+  margin: 0;
+}

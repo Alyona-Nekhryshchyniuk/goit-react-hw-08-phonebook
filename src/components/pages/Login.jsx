@@ -22,8 +22,6 @@ export const Login = () => {
   const onLoginSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    console.log(form.name.value);
-    console.log(credentials);
     dispatch(loginUser(credentials));
   };
   return (
@@ -33,12 +31,12 @@ export const Login = () => {
       <h2>Log in to start</h2>
       <Form onSubmit={onLoginSubmit}>
         <label>
-          email:
+          Email
           <UserInput name="email" type="text" onChange={onInputChange} />
         </label>
 
         <label>
-          password:
+          Password
           <UserInput name="password" type="password" onChange={onInputChange} />
         </label>
 

@@ -28,6 +28,6 @@ export const logoutUser = () => {
   return connectionsAPIAxios.post('/users/logout');
 };
 
-// export const getCurrentUser = () => {
-//   return connectionsAPIAxios.get('/users/current');
-// };
+export const getCurrentUser = () => {
+  return connectionsAPIAxios.get('/users/current');
+};
