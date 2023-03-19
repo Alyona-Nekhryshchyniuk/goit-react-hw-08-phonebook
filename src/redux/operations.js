@@ -6,6 +6,8 @@ import { tokenHeaders } from '../tokenHeaders';
 export const fetchContacts = createAsyncThunk(
   'contact/fetchAll',
   async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().login;
+    tokenHeaders.set(token);
     try {
       const response = await API.fetchAll();
 
@@ -95,7 +97,6 @@ export const getCurrentUser = createAsyncThunk(
     tokenHeaders.set(token);
     try {
       const response = await API.getCurrentUser();
-      console.log(response.data);
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
@@ -104,8 +105,7 @@ export const getCurrentUser = createAsyncThunk(
   {
     condition: (_, { getState, extra }) => {
       const { token } = getState().login;
-      console.log(token);
-      // const { fetchStatus } = users[userId];
+
       if (!token) {
         return false;
       }

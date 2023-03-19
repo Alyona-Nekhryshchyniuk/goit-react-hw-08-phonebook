@@ -5,21 +5,16 @@ import { selectError } from '../../redux/selectors';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/operations';
-import { tokenHeaders } from '../../tokenHeaders';
-import { selectToken, selectIsRefreshing } from '../../redux/selectors';
 
 export const Contacts = () => {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
-  const tokenAuth = useSelector(selectToken);
 
   useEffect(() => {
-    tokenHeaders.set(tokenAuth);
     dispatch(fetchContacts());
-  }, [dispatch, tokenAuth]);
-  const isRefreshing = useSelector(selectIsRefreshing);
+  }, [dispatch]);
 
-  console.log('isRefreshing', isRefreshing);
+  console.log('in Contacts');
   return (
     <>
       <ContactForm />

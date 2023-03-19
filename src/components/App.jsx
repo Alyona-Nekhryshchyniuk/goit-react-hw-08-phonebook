@@ -23,7 +23,7 @@ const App = () => {
   const token = useSelector(selectToken);
 
   const should = token && !isLoggedIn;
-  console.log(should);
+
   return (
     <>
       {should ? (
