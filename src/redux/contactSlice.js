@@ -13,7 +13,8 @@ const contactSlice = createSlice({
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isloading = false;
         state.error = null;
-        state.items.push(...action.payload);
+        state.items = action.payload;
+        // state.items.push(...action.payload);
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isloading = false;

@@ -3,11 +3,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, UserInput } from '../Form.styled';
 import { Button } from '../../components';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = () => {
-  // const errorMessage = useSelector(selectErrorMessage);
   const [credentials, setCredentials] = useState({});
   const dispatch = useDispatch();
 
@@ -23,8 +20,6 @@ export const Login = () => {
   };
   return (
     <>
-      {/* {errorMessage && toast(errorMessage)}
-      <ToastContainer position="center" /> */}
       <h2>Log in to start</h2>
       <Form onSubmit={onLoginSubmit}>
         <label>

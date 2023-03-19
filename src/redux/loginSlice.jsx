@@ -13,7 +13,7 @@ const loginSlice = createSlice({
     password: '',
     token: '',
     isLoggedIn: false,
-    // errorMessage: '',
+    errorMessage: '',
   },
   extraReducers: builder => {
     builder
@@ -25,9 +25,10 @@ const loginSlice = createSlice({
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoggedIn = false;
+        state.errorMessage = 'Registration was unsuccessful. Try again';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        // state.errorMessage = '';
+        state.errorMessage = '';
         state.token = action.payload.token;
         state.email = action.payload.user.email;
         state.password = action.payload.user.password;
@@ -35,7 +36,7 @@ const loginSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoggedIn = false;
-        // state.errorMessage = 'Email or/and password are incorrect. Try again';
+        state.errorMessage = 'To login input correct email and password';
       })
       .addCase(logoutUser.fulfilled, state => {
         state.errorMessage = '';
@@ -45,7 +46,7 @@ const loginSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(logoutUser.rejected, state => {
-        // state.errorMessage = 'Be carefull. You didn`t log out yet';
+        state.errorMessage = 'Be carefull. You didn`t log out yet';
         state.email = '';
         state.password = '';
         state.token = null;
@@ -55,8 +56,6 @@ const loginSlice = createSlice({
         state.isRefreshing = true;
         state.email = action.payload.email;
         state.isLoggedIn = true;
-        console.log(action.payload);
-        console.log(action);
       });
   },
 });

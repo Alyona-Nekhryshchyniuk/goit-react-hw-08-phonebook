@@ -14,7 +14,7 @@ import { selectFilteredList } from '../../redux/selectors';
 const ContactList = () => {
   const dispatch = useDispatch();
   const filteredList = useSelector(selectFilteredList);
-  console.log('in ContactList');
+
   return (
     <>
       <List>

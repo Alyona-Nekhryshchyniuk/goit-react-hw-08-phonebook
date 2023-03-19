@@ -10,7 +10,6 @@ import css from './Header.module.css';
 export const UserMenu = () => {
   const dispatch = useDispatch();
   const email = useSelector(selectEmail);
-  console.log(email);
   const logOutClick = () => {
     dispatch(logoutUser());
     return <Navigate to="/" />;

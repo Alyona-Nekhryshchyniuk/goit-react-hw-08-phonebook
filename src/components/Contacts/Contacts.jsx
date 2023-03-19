@@ -14,7 +14,6 @@ export const Contacts = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  console.log('in Contacts');
   return (
     <>
       <ContactForm />
