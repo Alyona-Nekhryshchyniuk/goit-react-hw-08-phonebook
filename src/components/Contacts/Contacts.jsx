@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/operations';
 import { token } from '../../token';
-import { selectToken } from '../../redux/selectors';
+import { selectToken, selectIsRefreshing } from '../../redux/selectors';
 
 export const Contacts = () => {
   const error = useSelector(selectError);
@@ -17,12 +17,12 @@ export const Contacts = () => {
     token.set(tokenAuth);
     dispatch(fetchContacts());
   }, [dispatch, tokenAuth]);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
+  console.log('isRefreshing', isRefreshing);
   return (
     <>
-      {/* <h1>Phonebook</h1> */}
       <ContactForm />
-      {/* <h1>Contacts</h1> */}
       <Filter />
       {error && (
         <div style={{ color: 'red' }}>

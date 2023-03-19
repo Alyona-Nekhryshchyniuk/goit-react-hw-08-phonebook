@@ -92,7 +92,7 @@ export const getCurrentUser = createAsyncThunk(
       // const state = thunkAPI.getState();
       // console.log(state);
       // const token = state.login.token;
-      console.log('dfdfffff');
+
       const { token } = thunkAPI.getState().login;
       console.log(token);
       if (!token) return thunkAPI.rejectWithValue();

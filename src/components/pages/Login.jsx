@@ -5,8 +5,6 @@ import { Form, UserInput } from '../Form.styled';
 import { Button } from '../../components';
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-import { selectErrorMessage } from '../../redux/selectors';
-import { useSelector } from 'react-redux';
 
 export const Login = () => {
   // const errorMessage = useSelector(selectErrorMessage);
@@ -21,7 +19,6 @@ export const Login = () => {
 
   const onLoginSubmit = e => {
     e.preventDefault();
-    const form = e.target;
     dispatch(loginUser(credentials));
   };
   return (
