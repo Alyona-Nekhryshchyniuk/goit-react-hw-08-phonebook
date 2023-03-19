@@ -1,5 +1,5 @@
 import { connectionsAPIAxios } from './axiosRequests';
-export const token = {
+export const tokenHeaders = {
   set(token) {
     connectionsAPIAxios.defaults.headers.common[
       'Authorization'

@@ -5,7 +5,7 @@ import { selectError } from '../../redux/selectors';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/operations';
-import { token } from '../../token';
+import { tokenHeaders } from '../../tokenHeaders';
 import { selectToken, selectIsRefreshing } from '../../redux/selectors';
 
 export const Contacts = () => {
@@ -14,7 +14,7 @@ export const Contacts = () => {
   const tokenAuth = useSelector(selectToken);
 
   useEffect(() => {
-    token.set(tokenAuth);
+    tokenHeaders.set(tokenAuth);
     dispatch(fetchContacts());
   }, [dispatch, tokenAuth]);
   const isRefreshing = useSelector(selectIsRefreshing);

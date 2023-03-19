@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useDispatch } from '../components';
 import { getCurrentUser } from '../redux/operations';
 
-import { selectIsLoggedIn } from '../redux/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from '../redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,28 +18,29 @@ const App = () => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
+  const isRefreshing = useSelector(selectIsRefreshing);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <>
-      {' '}
-      <Routes>
-        <Route
-          path="/"
-          element={isLoggedIn ? <UserMenu /> : <NotAuthUserMenu />}
-        >
+      {!isRefreshing && (
+        <Routes>
           <Route
-            index
-            element={<PrivateRoute navPath="/Contacts" element={<Login />} />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/contacts"
-            element={<RestrictedRoute element={<Contacts />} navPath="/" />}
-          />
-        </Route>
-      </Routes>
-      )
+            path="/"
+            element={isLoggedIn ? <UserMenu /> : <NotAuthUserMenu />}
+          >
+            <Route
+              index
+              element={<PrivateRoute navPath="/Contacts" element={<Login />} />}
+            />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/contacts"
+              element={<RestrictedRoute element={<Contacts />} navPath="/" />}
+            />
+          </Route>
+        </Routes>
+      )}
     </>
   );
 };

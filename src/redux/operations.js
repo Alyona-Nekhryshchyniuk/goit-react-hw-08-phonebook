@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as API from '../axiosRequests';
-import { token } from '../token';
+import { tokenHeaders } from '../tokenHeaders';
 
 // Fetch all
 export const fetchContacts = createAsyncThunk(
@@ -8,7 +8,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await API.fetchAll();
-      console.log(response.data);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -48,7 +48,7 @@ export const registerUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await API.registerUser(credentials);
-      token.set(response.data.token);
+      tokenHeaders.set(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -64,7 +64,7 @@ export const loginUser = createAsyncThunk(
       // console.log(credentials);
       const response = await API.loginUser(credentials);
 
-      token.set(response.data.token);
+      tokenHeaders.set(response.data.token);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -77,7 +77,7 @@ export const logoutUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await API.logoutUser();
-      token.unset();
+      tokenHeaders.unset();
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
@@ -88,30 +88,27 @@ export const logoutUser = createAsyncThunk(
 export const getCurrentUser = createAsyncThunk(
   'login/getCurrentUser',
   async (_, thunkAPI) => {
-    try {
-      // const state = thunkAPI.getState();
-      // console.log(state);
-      // const token = state.login.token;
+    const { token } = thunkAPI.getState().login;
+    // console.log(token);
+    // if (!token) return thunkAPI.rejectWithValue('error');
 
-      const { token } = thunkAPI.getState().login;
-      console.log(token);
-      if (!token) return thunkAPI.rejectWithValue();
-      token.set(token);
+    tokenHeaders.set(token);
+    try {
       const response = await API.getCurrentUser();
       console.log(response.data);
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
     }
+  },
+  {
+    condition: (_, { getState, extra }) => {
+      const { token } = getState().login;
+      console.log(token);
+      // const { fetchStatus } = users[userId];
+      if (!token) {
+        return false;
+      }
+    },
   }
-  // {
-  //   condition: (_, { getState, extra }) => {
-  //     const { token } = getState().login;
-
-  //     // const { fetchStatus } = users[userId];
-  //     if (!token) {
-  //       return false;
-  //     }
-  //   },
-  // }
 );
