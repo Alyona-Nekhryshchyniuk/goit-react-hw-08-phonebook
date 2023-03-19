@@ -44,9 +44,10 @@ export const deleteContact = createAsyncThunk(
 
 // Register
 export const registerUser = createAsyncThunk(
-  'register/registerUser',
+  'login/registerUser',
   async (credentials, thunkAPI) => {
     try {
+      console.log(credentials);
       const response = await API.registerUser(credentials);
       tokenHeaders.set(response.data.token);
       return response.data;
@@ -63,7 +64,6 @@ export const loginUser = createAsyncThunk(
     try {
       // console.log(credentials);
       const response = await API.loginUser(credentials);
-
       tokenHeaders.set(response.data.token);
       return response.data;
     } catch (error) {

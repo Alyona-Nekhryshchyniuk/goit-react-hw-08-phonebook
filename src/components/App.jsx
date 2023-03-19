@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useDispatch } from '../components';
 import { getCurrentUser } from '../redux/operations';
 
-import { selectIsLoggedIn, selectIsRefreshing } from '../redux/selectors';
+import { selectIsLoggedIn, selectToken } from '../redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,12 +18,17 @@ const App = () => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isRefreshing = useSelector(selectIsRefreshing);
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const token = useSelector(selectToken);
 
+  const should = token && !isLoggedIn;
+  console.log(should);
   return (
     <>
-      {!isRefreshing && (
+      {should ? (
+        <p>..yy..</p>
+      ) : (
         <Routes>
           <Route
             path="/"
@@ -31,9 +36,14 @@ const App = () => {
           >
             <Route
               index
-              element={<PrivateRoute navPath="/Contacts" element={<Login />} />}
+              element={<PrivateRoute navPath="/contacts" element={<Login />} />}
             />
-            <Route path="/register" element={<Register />} />
+            <Route
+              path="/register"
+              element={
+                <PrivateRoute navPath="/contacts" element={<Register />} />
+              }
+            />
             <Route
               path="/contacts"
               element={<RestrictedRoute element={<Contacts />} navPath="/" />}

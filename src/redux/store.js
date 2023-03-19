@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { loginReducer } from './loginSlice';
 import { contactReducer } from './contactSlice';
 import { filterReducer } from './filterSlice';
-import { registerReducer } from './registerSlice';
+// import { registerReducer } from './registerSlice';
 
 import storage from 'redux-persist/lib/storage';
 import {
@@ -28,7 +28,7 @@ export let store = configureStore({
   reducer: {
     contact: contactReducer,
     filter: filterReducer,
-    register: registerReducer,
+    // register: registerReducer,
     login: persistedReducer,
   },
 

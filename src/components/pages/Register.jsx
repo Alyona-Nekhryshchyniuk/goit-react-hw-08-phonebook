@@ -15,9 +15,6 @@ export const Register = () => {
 
   const onRegisterSubmit = e => {
     e.preventDefault();
-    const form = e.target;
-    console.log(form.name.value);
-    console.log(credentials);
     dispatch(registerUser(credentials));
   };
 

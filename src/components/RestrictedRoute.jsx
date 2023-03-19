@@ -7,17 +7,21 @@ export const RestrictedRoute = ({ navPath, element }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const token = useSelector(selectToken);
   console.log(token);
-  // If(!isLoggedIn && token) return;
 
-  // If(isLoggedIn){
-  //   return element
-  // }else{
-  //   return  <Navigate to={navPath} />
-  // }
-  if (!isLoggedIn && token) {
-    return <>...</>;
-  } else {
-    return !isLoggedIn && !token ? <Navigate to={navPath} /> : element;
+  if (isLoggedIn && token) {
+    console.log('1');
+    return element;
   }
+
+  if (!isLoggedIn && !token) {
+    console.log('2');
+    return <Navigate to={navPath} />;
+  }
+
+  // if (!isLoggedIn && token) {
+  //   console.log('3');
+  //   return <> ... </>;
+  // }
+
   // return isLoggedIn ? element : <Navigate to={navPath} />;
 };
