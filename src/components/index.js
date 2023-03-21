@@ -8,7 +8,7 @@ export { ImExit } from 'react-icons/im';
 
 export { Form, UserInput } from './Form.styled';
 export { Button } from './Button.styled';
-export { List, ListItem } from './ContactList/List.styled';
+export { List, ListItem, Contact } from './ContactList/List.styled';
 export {
   Header,
   NavUserDetails,

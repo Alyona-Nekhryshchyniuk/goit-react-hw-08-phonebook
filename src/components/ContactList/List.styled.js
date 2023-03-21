@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const List = styled.ul`
   list-style: none;
-  padding: 0px 240px;
+  padding: 0;
 `;
 
 export const ListItem = styled.li`
@@ -16,7 +16,11 @@ export const ListItem = styled.li`
     & > svg {
       width: 27 px;
       height: 27px;
-      padding-right: 15px;
+      padding: 0 10px;
     }
   }
+`;
+
+export const Contact = styled.div`
+  padding-right: 15px;
 `;

@@ -9,8 +9,7 @@ import {
 const loginSlice = createSlice({
   name: 'login',
   initialState: {
-    email: '',
-    password: '',
+    user: { email: '', password: '' },
     token: '',
     isLoggedIn: false,
     errorMessage: '',
@@ -19,42 +18,37 @@ const loginSlice = createSlice({
     builder
       .addCase(registerUser.fulfilled, (state, action) => {
         state.token = action.payload.token;
-        state.email = action.payload.user.email;
-        state.password = action.payload.user.password;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
       })
-      .addCase(registerUser.rejected, (state, action) => {
+      .addCase(registerUser.rejected, state => {
         state.isLoggedIn = false;
         state.errorMessage = 'Registration was unsuccessful. Try again';
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.errorMessage = '';
         state.token = action.payload.token;
-        state.email = action.payload.user.email;
-        state.password = action.payload.user.password;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoggedIn = false;
-        state.errorMessage = 'To login input correct email and password';
+        state.errorMessage = 'Incorrect email or/and password';
       })
       .addCase(logoutUser.fulfilled, state => {
         state.errorMessage = '';
-        state.email = '';
-        state.password = '';
+        state.user = { email: '', password: '' };
         state.token = null;
         state.isLoggedIn = false;
       })
       .addCase(logoutUser.rejected, state => {
         state.errorMessage = 'Be carefull. You didn`t log out yet';
-        state.email = '';
-        state.password = '';
         state.token = null;
         state.isLoggedIn = true;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.isRefreshing = true;
-        state.email = action.payload.email;
+        state.user = action.payload;
         state.isLoggedIn = true;
       });
   },

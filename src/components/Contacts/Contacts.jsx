@@ -5,6 +5,8 @@ import { selectError } from '../../redux/selectors';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchContacts } from '../../redux/operations';
+import { FlexContainer, RightSection } from './Container.styled';
+import { createErrorMessage, container } from '../../../src/toastNotification';
 
 export const Contacts = () => {
   const error = useSelector(selectError);
@@ -14,17 +16,16 @@ export const Contacts = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  error && createErrorMessage(`Oooops ... ${error}`);
+
   return (
-    <>
+    <FlexContainer>
+      {container}
       <ContactForm />
-      <Filter />
-      {error && (
-        <div style={{ color: 'red' }}>
-          <p>Oooops ...</p>
-          <p>{error}</p>
-        </div>
-      )}
-      <ContactList />
-    </>
+      <RightSection>
+        <Filter />
+        <ContactList />
+      </RightSection>
+    </FlexContainer>
   );
 };

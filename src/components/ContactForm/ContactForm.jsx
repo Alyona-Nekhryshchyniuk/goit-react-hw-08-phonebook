@@ -9,6 +9,7 @@ import {
 import { Form, UserInput } from '../../components';
 import { addContact } from '../../redux/operations';
 import { selectContacts } from '../../redux/selectors';
+import { createErrorMessage, container } from '../../../src/toastNotification';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -22,14 +23,15 @@ const ContactForm = () => {
   };
 
   return (
-    <>
-      <h1>Phonebook</h1>
+    <section>
+      <h2>Phonebook</h2>
+      {container}
       <Form
         color="#ffee7d"
         onSubmit={e => {
           e.preventDefault();
           contacts.find(obj => obj.name === name)
-            ? alert(`${name} is already in contacts`)
+            ? createErrorMessage(`${name} is already in contacts`, 'warning')
             : dispatch(addContact({ name, number }));
           setName('');
           setNumber('');
@@ -63,7 +65,7 @@ const ContactForm = () => {
           <BsFillTelephonePlusFill /> Add contacts
         </Button>
       </Form>
-    </>
+    </section>
   );
 };
 ContactForm.propTypes = {

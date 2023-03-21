@@ -9,12 +9,7 @@ import { RestrictedRoute } from './RestrictedRoute';
 import { useSelector } from 'react-redux';
 import { useEffect, useDispatch } from '../components';
 import { getCurrentUser } from '../redux/operations';
-import { createErrorMessage, container } from '../../src/toastNotification';
-import {
-  selectIsLoggedIn,
-  selectToken,
-  selectErrorMessage,
-} from '../redux/selectors';
+import { selectIsLoggedIn, selectToken } from '../redux/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -24,16 +19,13 @@ const App = () => {
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const token = useSelector(selectToken);
-  const errorMessage = useSelector(selectErrorMessage);
-  const error = errorMessage !== '' && createErrorMessage(errorMessage);
+
   const isRefreshing = token && !isLoggedIn;
 
   return (
     <>
-      {error}
-      {container}
       {isRefreshing ? (
-        <p> Wait for a second ...</p>
+        <p> Wait ...</p>
       ) : (
         <Routes>
           <Route

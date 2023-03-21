@@ -2,6 +2,7 @@ import {
   default as PropTypes,
   Button,
   List,
+  Contact,
   ListItem,
   RiContactsLine,
   RiDeleteBin6Line,
@@ -22,10 +23,11 @@ const ContactList = () => {
           return (
             name && (
               <ListItem key={id}>
-                <div>
+                <Contact>
                   <RiContactsLine color="color=#ffee7d" /> {name}: {number}
-                </div>
+                </Contact>
                 <Button
+                  delete
                   onClick={() => {
                     dispatch(deleteContact(id));
                   }}

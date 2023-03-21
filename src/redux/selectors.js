@@ -7,7 +7,7 @@ export const selectError = state => state.contact.error;
 
 export const selectIsLoggedIn = state => state.login.isLoggedIn;
 
-export const selectEmail = state => state.login.email;
+export const selectEmail = state => state.login.user.email;
 
 export const selectToken = state => state.login.token;
 

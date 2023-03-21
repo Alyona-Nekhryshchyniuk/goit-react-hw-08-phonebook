@@ -11,11 +11,12 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <h1>Contacts</h1>
+    <section>
+      <h2>Contacts</h2>
       <label>
         Find contacts by name <br />
         <UserInput
+          style={{ margin: 0 }}
           onChange={e => {
             dispatch(setFilterValue(e.target.value));
           }}
@@ -23,7 +24,7 @@ const Filter = () => {
           value={useSelector(selectFilter)}
         />
       </label>
-    </>
+    </section>
   );
 };
 

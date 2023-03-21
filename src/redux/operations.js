@@ -47,6 +47,7 @@ export const deleteContact = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   'login/registerUser',
   async (credentials, thunkAPI) => {
+    console.log(credentials);
     try {
       const response = await API.registerUser(credentials);
       tokenHeaders.set(response.data.token);
